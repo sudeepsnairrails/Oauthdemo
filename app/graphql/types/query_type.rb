@@ -14,5 +14,22 @@ module Types
       Post.find(id)
     end
 
+    field :user_by_name, Types::UserType, null: false do
+      argument :name, String, required: true
+    end
+
+    def user_by_name(name:)
+      User.find_by(name: name)
+    end
+
+    field :all_users, [Types::UserType], null: false 
+
+    def all_users
+      User.all
+    end
+
+    
+    
+
   end
 end
