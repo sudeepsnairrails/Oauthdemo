@@ -2,9 +2,13 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :posts
+  has_many :patient_profiles
+  has_many :doctor_profiles
+  belongs_to :user_category
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]
+         :omniauthable, :token_authenticatable,
+         :omniauth_providers => [:facebook]
          def self.new_with_session(params, session)
            super.tap do |user|
              if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

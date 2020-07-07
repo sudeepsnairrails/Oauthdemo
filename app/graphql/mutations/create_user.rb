@@ -1,5 +1,6 @@
 module Mutations
   class CreateUser < BaseMutation
+    #authorize_user
     # TODO: define return fields
      field :user, Types::UserType, null: true
      field :errors, [String], null: true

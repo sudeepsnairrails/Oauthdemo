@@ -1,5 +1,6 @@
 module Types
   class QueryType < Types::BaseObject
+
     field :user, Types::UserType, null: false do
       argument :id, ID, required: true
     end
@@ -23,12 +24,31 @@ module Types
     end
 
     field :all_users, [Types::UserType], null: false 
-
     def all_users
       User.all
     end
 
-    
+    field :patient_profile, Types::PatientProfileType, null: false do
+      argument :id, ID, required: true
+    end
+    def patient_profile(id:)
+      PatientProfile.find(id)
+    end
+
+    field :doctor_profile, Types::DoctorProfileType, null: false do
+      argument :id, ID, required: true
+    end
+    def doctor_profile(id:)
+      DoctorProfile.find(id)
+    end
+
+    field :user_category, Types::UserCategoryType, null: false do
+      argument :id, ID, required: true
+    end
+    def user_category(id:)
+      k = UserCategory.find(id)
+    end
+
     
 
   end
